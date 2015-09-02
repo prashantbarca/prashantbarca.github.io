@@ -73,4 +73,4 @@ Explanation to why we add the one extra line to the source lex
 Hope this post helped. You can write to the author at 
 
 * "prashant[dot]barca[at]gmail[dot]com", or 
-* [www.facebook.com/prashant.barca](www.facebook.com/prashant.barca)
+* [www.facebook.com/prashant.barca](https://www.facebook.com/prashant.barca)
