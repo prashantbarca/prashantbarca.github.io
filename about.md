@@ -3,8 +3,9 @@ layout: page
 title: About
 ---
 
-Holo Alfa is a minimalist, mobile first Jekyll theme with focus on readability and content. Created for free and for fun by Stijn. Get the latest version at the [Github repository](https://github.com/steinvc/holo-alfa).
+[CEGLUG](http://ceglug.org) is the GNU/Linux Users' Community of [CEG](https://en.wikipedia.org/wiki/College_of_Engineering,_Guindy).<br/>
+It is dedicated to promote Free and Open Source Software. CEGLUG organizes many activities and events to promote the mantra of Free and Open Source.<br/>
 
 ---
 
-Holo Alfa is open source, [MIT license](http://opensource.org/licenses/MIT).
+[CEGLUG Blog](http://blog.ceglug.org) is the Official Blog of the CEGLUG.
