@@ -1,20 +1,20 @@
 
 # The name of your website.
-name: Holo Alfa
+name: CEGLUG Blog
 
 description:
 
-  # Discription of your site, this will show up in google.
-  meta: Holo Alfa is a minimalist, mobile first Jekyll theme with focus on readability and content.
+  # Description of your site, this will show up in google.
+  meta: Blog of CEG GNU/Linux Users' Group.
 
-  # Discription of your site, this will show up on the front page.
-  subtitle: Holo Alfa is a minimalist, mobile first Jekyll theme with focus on readability and content. <a href="https://github.com/steinvc/holo-alfa">&lt;/&gt; on Github</a>.
+  # Description of your site, this will show up on the front page.
+  subtitle: <a href="http://ceglug.org">CEGLUG</a> is the GNU/Linux Users' Community of <a href="https://en.wikipedia.org/wiki/College_of_Engineering,_Guindy">CEG</a>.
 
-author:
-  name: Stijn van Cuijk
+author: 
+  name: # No Default author name
 
   # Necessary for contact page
-  email: stijnvcuijk@gmail.com
+  email: ceglugteam@gmail.com
 
   # Optional text (html) to dislay after author name. Leave empty if you don't
   # want it.
@@ -22,7 +22,7 @@ author:
 
 # The URL of the homepage of your site (without trailing slash). Leave this
 # empty when you run Jekyll locally.
-url: http://localhost:4000
+url: http://blog.ceglug.org
 baseurl: ""
 
 # language attribute in <html> element.
@@ -37,11 +37,11 @@ lang: en
 # If you want to show the subtitle anywhere else than the front page, use
 # {% include subtitle.html %} to include it anywhere you want.
 show-subtitle: true
-display-social-icons: false
+display-social-icons: true
 
-footer-text: This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.
+footer-text: Proudly powered by <a href="http://jekyllrb.com">Jekyll</a> and hosted with &#9829 by <a href="https://www.github.com">Github</a><br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.
 
-# Preferrably 64px in height. Leave empty = disbale.
+# Preferrably 64px in height. Leave empty = disable.
 logo-image: # /img/logo.png
 
 # Toolbar color for Chrome on Android.
@@ -77,7 +77,7 @@ nav-breaking-point: 520px
 paginate: 3
 
 # Display links for the previous and next post on post pages.
-display-next-prev-post: false
+display-next-prev-post: true
 
 # Leave empty if you don't want comments on post pages.
 disqus-shortname:
@@ -89,17 +89,17 @@ disqus-shortname:
 
 # Use a complete url here, including http:// and such. Requiring just usernames
 # has been considered, but this is way more customizable.
-twitter:
+twitter: https://twitter.com/CEGLUG
 youtube:
 instagram:
 tumblr:
-facebook:
+facebook: https://www.facebook.com/ceglug.org
 google-plus:
 reddit:
 soundcloud:
 medium:
 linkedin:
-github:
+github: https://www.github.com/ceglug
 behance:
 codepen:
 dribbble:
