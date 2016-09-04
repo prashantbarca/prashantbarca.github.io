@@ -8,7 +8,7 @@ author:
 summary: Transfer-X, transfer files/folders faster.
 ---
 
-Transfer-X tool enables you to transfer files/folders from any Laptop with Ubuntu(or any GNU/Linux distro) to any other device on the same network by zipping them and starting a http server.
+[Transfer-X](https://github.com/lost-plus-found/transfer-x) tool enables you to transfer files/folders from any Laptop with Ubuntu(or any GNU/Linux distro) to any other device on the same network by zipping them and starting a http server.
 
 ### Story
 
@@ -20,15 +20,15 @@ Transfer-X tool enables you to transfer files/folders from any Laptop with Ubunt
 2) Find the IP address assigned to the Ubuntu laptop and note it down.
 
 ```
-ifconfig | awk '/inet addr/{print substr($2,6)}' | tail -1
+$ ifconfig | awk '/inet addr/{print substr($2,6)}' | tail -1
 ```
 3) Change to the folder to be sent, disable the firewall and start the httpserver
 
-{% highlight Bash %}
-cd /media/User/
-sudo ufw disable
-python -m  SimpleHTTPServer
-{% endhighlight %}
+```
+$ cd /media/User/
+$ sudo ufw disable
+$ python -m  SimpleHTTPServer
+```
 
 *The old laptops IP address when opened in the new laptop's browser provides all the data from the folder to be sent as hyperlinks which she could click to download. `http://<old laptop's ip>:8000`
 But a major drawback in this was that the files had to be downloaded one by one and not folder by folder.
@@ -42,17 +42,50 @@ This increased the manual work and became inconvenient. In order to make this al
 * *If the user forgets to connect to the network.*
 * *If the user mistypes the command*
 
-whether the user is connected to the network, wrong name of file/folder being entered.
+*Finally, I managed to code it and made it open source as well.*
 
-Now I'll just give you a quick run through of how to transfer files 
-1)Connect the transmitting laptop as well as the receiving  device on the same network (use home wifi or use hotspot from device or connect both with lan)
-2) File or Folder to be transferred <file -1 or folder-1> <file-2 or folder-2> ..........
-file-1 or folder-1 can have current location or location from root
-a) ./file
-b) /home/user/file
-c) file
-d) ~/file
-3) Now simply click on the link which is displayed in the browser of the receiving device
-4) Inorder to stop the transfer process just make use of the command transfer-x --stop
-Tada!!! 
-Files were transferred in no time... And I became a hero :P
+### Using Transfer-X
+
+Now I'll just give you a quick run through of Transfer-X
+
+1) Install [Transfer-X](https://github.com/lost-plus-found/transfer-x)
+
+2) Connect the laptop from which files/folders are to be transferred, as well as the receiving devices to the same network (*use home Wi-Fi or use hotspot from any device or connect with ethernet incase if both are laptops and you have ethernet*)
+
+3) Add the files and folders to be sent
+
+```
+$ ls
+file1 file2 folder1
+$ transfer-x file1 file2 folder1
+  adding: transfer-box/ (stored 0%)
+  adding: transfer-box/folder1/ (stored 0%)
+  adding: transfer-box/file1 (stored 0%)
+  adding: transfer-box/file2 (stored 0%)
+
+Hey! Just want to off the firewall till the tranfer is done!
+Firewall stopped and disabled on system startup
+
+Hi! The server is running!
+
+ http://192.168.1.3:8000/transfer-box.zip 
+
+** Paste the link in receiver browser **
+$ 
+```
+
+note: transfer-x supports all file paths
+a) `file`
+b) `./file`
+c) `/home/user/file` 
+d) `~/file`
+
+
+4) After pasting the link in the browser, wait for it to get downloaded (*The download speed depends on the home Wi-Fi router or ethernet cable*)
+
+5) After the transfer is done, unzip it and stop the server. 
+
+```
+$ transfer-x --stop
+```
+Hope it helps, feel free to share your views, bugs can be reported [here](https://github.com/lost-plus-found/transfer-x/issues)
