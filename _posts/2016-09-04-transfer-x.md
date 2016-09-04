@@ -34,8 +34,16 @@ python -m  SimpleHTTPServer
 But a major drawback in this was that the files had to be downloaded one by one and not folder by folder.
 This increased the manual work and became inconvenient. In order to make this alright, the first idea which came to my mind was to configure fpt but that turned out to be tedious, because httpserver comes in handy with python!*
 
-Then I thought of zipping each and every file and sending it via the http server, but she still had quite a bit of trouble in finding the the IP address. Thus i ended up automating it by taking advantage of the inherent features of Linux.
-Certain important corner cases had to be handled, such as; whether the user is connected to the network, wrong name of file/folder being entered.
+### Idea
+
+*Then I thought of zipping each and every file and folder to be sent and starting the httpserver, but she still had quite a bit of trouble in typing the commands. Thus I ended up automating it using Bash. I had some corner cases to be handled, such as:*
+
+* *What if the User mistypes the file/folder name.*
+* *If the user forgets to connect to the network.*
+* *If the user mistypes the command*
+
+whether the user is connected to the network, wrong name of file/folder being entered.
+
 Now I'll just give you a quick run through of how to transfer files 
 1)Connect the transmitting laptop as well as the receiving  device on the same network (use home wifi or use hotspot from device or connect both with lan)
 2) File or Folder to be transferred <file -1 or folder-1> <file-2 or folder-2> ..........
