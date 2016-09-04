@@ -8,12 +8,14 @@ author:
 summary: Transfer-X, transfer files/folders faster.
 ---
 
-Transferring files among devices in a same network!!!
+Transfer-X tool enables you to transfer files/folders from any Laptop with Ubuntu(or any GNU/Linux distro) to any other device on the same network by zipping them and starting a http server.
+
+Transferring files among devices connected to the same network!!!
 In Today's world, the lifespan of electronics devices is quiet short as well as new features are available in the market every so often.
 It so happened that one of my friends bought a new laptop and had to transfer approximately 100 GB data from her old laptop to the new one. 
 Doing this using an 8 gb pendrive was proving to be a tedious task, so i came up with the idea of transferring data from one laptop to another; by taking advantage of the fact that the old laptop had linux on it and the laptops are connected to her home network.
 
-One of the prerequisites for accomplishing this was to Stop the firewall, the server then had to be started and the old laptops IP address when opened in the new laptop provides all the data in the first laptop as hyperlinks which she could click to download. 
+One of the prerequisites for accomplishing this was to stop the firewall, the server then had to be started and the old laptops IP address when opened in the new laptop provides all the data in the first laptop as hyperlinks which she could click to download. 
 But a major drawback in this was that the files had to be downloaded one by one and not folder by folder.
 This increased the manual work and became inconvenient. In order to make this alright, the first idea which came to my mind was to configure fpt but that turned out to be tedious, because httpserver comes in handy with debian! 
 
@@ -29,3 +31,5 @@ c) file
 d) ~/file
 3) Now simply click on the link which is displayed in the browser of the receiving device
 4) Inorder to stop the transfer process just make use of the command transfer-x --stop
+Tada!!! 
+Files were transferred in no time... And I became a hero :P
