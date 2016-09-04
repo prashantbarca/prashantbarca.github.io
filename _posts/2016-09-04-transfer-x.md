@@ -10,14 +10,29 @@ summary: Transfer-X, transfer files/folders faster.
 
 Transfer-X tool enables you to transfer files/folders from any Laptop with Ubuntu(or any GNU/Linux distro) to any other device on the same network by zipping them and starting a http server.
 
-Transferring files among devices connected to the same network!!!
-In Today's world, the lifespan of electronics devices is quiet short as well as new features are available in the market every so often.
-It so happened that one of my friends bought a new laptop and had to transfer approximately 100 GB data from her old laptop to the new one. 
-Doing this using an 8 gb pendrive was proving to be a tedious task, so i came up with the idea of transferring data from one laptop to another; by taking advantage of the fact that the old laptop had linux on it and the laptops are connected to her home network.
+### Story
 
-One of the prerequisites for accomplishing this was to stop the firewall, the server then had to be started and the old laptops IP address when opened in the new laptop provides all the data in the first laptop as hyperlinks which she could click to download. 
+*One of my friends bought a new laptop and had to transfer approximately 100 GB data from her old laptop to the new one. Doing this using an 8 gb pendrive was proving to be a tedious task, so I came up with the idea of transferring data from one laptop to another; by taking advantage of the fact that the old laptop had Ubuntu on it and both the laptops are connected to her home network.*
+
+### Steps that I told
+1) Connect both the laptops to the Home Wi-Fi network.
+
+2) Find the IP address assigned to the Ubuntu laptop and note it down.
+
+```
+ifconfig | awk '/inet addr/{print substr($2,6)}' | tail -1
+```
+3) Change to the folder to be sent, disable the firewall and start the httpserver
+
+{% highlight Bash %}
+cd /media/User/
+sudo ufw disable
+python -m  SimpleHTTPServer
+{% endhighlight %}
+
+*The old laptops IP address when opened in the new laptop's browser provides all the data from the folder to be sent as hyperlinks which she could click to download. `http://<old laptop's ip>:8000`
 But a major drawback in this was that the files had to be downloaded one by one and not folder by folder.
-This increased the manual work and became inconvenient. In order to make this alright, the first idea which came to my mind was to configure fpt but that turned out to be tedious, because httpserver comes in handy with debian! 
+This increased the manual work and became inconvenient. In order to make this alright, the first idea which came to my mind was to configure fpt but that turned out to be tedious, because httpserver comes in handy with python!*
 
 Then I thought of zipping each and every file and sending it via the http server, but she still had quite a bit of trouble in finding the the IP address. Thus i ended up automating it by taking advantage of the inherent features of Linux.
 Certain important corner cases had to be handled, such as; whether the user is connected to the network, wrong name of file/folder being entered.
