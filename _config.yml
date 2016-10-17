@@ -1,26 +1,26 @@
 
 # The name of your website.
-name: CEGLUG Blog
+name: LangSec Tutorial in Ruby
 
 description:
 
   # Description of your site, this will show up in google.
-  meta: Blog of CEG GNU/Linux Users' Group.
+  meta: Language-theoretic security blog
 
   # Description of your site, this will show up on the front page.
-  subtitle: <a href="http://ceglug.org">CEGLUG</a> is the GNU/Linux Users' Community of <a href="https://en.wikipedia.org/wiki/College_of_Engineering,_Guindy">CEG</a>.
+  subtitle: <a href="http://langsec.org">LangSec</a> is the approach to internet security where all input is treated as languages, and is recognized completely before being processed.
 
 author:
-  name: # No Default author name
+  name: Prashant Anantharaman
 
   # Necessary for contact page
-  email: ceglugteam@gmail.com
+  email: lists@prashant.at
 
   # Optional text (html) to dislay after author name. Leave empty if you don't
   # want it.
   info:
 
-url: http://blog.ceglug.org
+url: http://langsec.prashant.at
 baseurl: ""
 
 # language attribute in <html> element.
@@ -72,14 +72,13 @@ date_format: "%b %-d, %Y"
 nav-breaking-point: 520px
 
 # Number of posts on each page.
-paginate: 3
+paginate: 10
 
 # Display links for the previous and next post on post pages.
 display-next-prev-post: true
 
 # Leave empty if you don't want comments on post pages.
-disqus-shortname: ceglugblog
-
+disqus-shortname: 
 
 ################
 # SOCIAL ICONS #
@@ -87,17 +86,17 @@ disqus-shortname: ceglugblog
 
 # Use a complete url here, including http:// and such. Requiring just usernames
 # has been considered, but this is way more customizable.
-twitter: https://twitter.com/CEGLUG
+twitter: https://twitter.com/prashantbarca
 youtube:
 instagram:
 tumblr:
-facebook: https://www.facebook.com/ceglug.org
+facebook: https://www.facebook.com/prashant.barca
 google-plus:
 reddit:
 soundcloud:
 medium:
-linkedin:
-github: https://www.github.com/ceglug
+linkedin: https://linkedin.com/in/prashantanantharaman
+github: https://www.github.com/prashantbarca
 behance:
 codepen:
 dribbble:

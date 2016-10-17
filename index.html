@@ -3,9 +3,7 @@ layout: default
 home: true
 ---
 
-
-
-{% for post in paginator.posts %}
+{% for post in paginator.posts reversed %}
 
 {% assign minutes = post.content | number_of_words | divided_by: 180 %}
 {% if minutes == 0 %}
