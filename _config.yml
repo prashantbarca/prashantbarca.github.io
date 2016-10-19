@@ -8,7 +8,7 @@ description:
   meta: Language-theoretic security blog
 
   # Description of your site, this will show up on the front page.
-  subtitle: <a href="http://langsec.org">LangSec</a> is the approach to internet security where all input is treated as languages, and is recognized completely before being processed.
+  subtitle: <a href="http://langsec.org">LangSec</a> is the approach to internet security where all input is treated as a language, and is recognized completely before being processed. In this tutorial series, we shall see how the Hammer parser combinator library can be used to build a effective client for an IoT protocol.
 
 author:
   name: Prashant Anantharaman
@@ -16,7 +16,7 @@ author:
   # Necessary for contact page
   email: lists@prashant.at
 
-  # Optional text (html) to dislay after author name. Leave empty if you don't
+  # Optional text (html) to display after author name. Leave empty if you don't
   # want it.
   info:
 
