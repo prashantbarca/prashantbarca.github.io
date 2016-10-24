@@ -8,7 +8,7 @@ description:
   meta: Language-theoretic security blog
 
   # Description of your site, this will show up on the front page.
-  subtitle: <a href="http://langsec.org">LangSec</a> is the approach to internet security where all input is treated as a language, and is recognized completely before being processed. In this tutorial series, we shall see how the Hammer parser combinator library can be used to build a effective client for an IoT protocol.
+  subtitle: A <a href="http://langsec.org">LangSec</a> tutorial series in which we begin with the installation and basics of parser combinators and go on to build an effective IoT client in ruby applying the LangSec philosophy throughout. LangSec is the approach to internet security where all input is treated as a language, and is recognized completely before being processed. 
 
 author:
   name: Prashant Anantharaman
