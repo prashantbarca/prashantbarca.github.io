@@ -1,11 +1,11 @@
 ---
-title: Introduction and Installation
+title: Introduction to LangSec and Installing Hammer with Ruby bindings
 
 author:
   name: Prashant Anantharaman
   info: (@<a href="https://www.facebook.com/prashant.barca">Prashant Anantharaman</a>)
   
-summary: Introduction to Hammer, LangSec and Installation
+summary: An introduction to LangSec, parser combinators and a step by step installation guide to the hammer library and the `hammer-parser` ruby gem.
 ---
 
 Language-theoretic security (LangSec) is a way of writing parsers that make them easier to audit, and enforces the validation of the input that is being received before doing any computation is performed on the input. We first fully recognize the input, and make sure it conforms with our specification. If not, we simply reject the input. The computation is completely separated from the input recognition phase.
