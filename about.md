@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-To know more about LangSec, please checkout the following papers. 
+To know more about LangSec, please checkout the following papers:
 
 "Exploit Programming: from Buffer Overflows to Weird Machines and Theory of Computation", Sergey Bratus, Michael E. Locasto, Meredith L. Patterson, Len Sassaman, Anna Shubina [PDF](http://langsec.org/papers/Bratus.pdf)
 
