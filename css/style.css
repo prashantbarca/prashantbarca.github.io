@@ -472,7 +472,7 @@ nav a.current {
     padding: 5px 8px;
   }
   .website-title {
-    margin-bottom: 80px;
+    margin-bottom: 10px;
   }
 }
 @media all and (min-width: 760px) {
