@@ -41,8 +41,9 @@ This will install hammer to `/usr/local`.
 
 `$ irb` 
 
-```> require 'hammer-parser'
-
- => true ```
+```ruby
+ > require 'hammer-parser'
+ => true 
+```
 
 Thanks for reading the first part of the LangSec Ruby tutorial series. In the next post, we shall look at building basic regular expressions using the hammer-parser library.
