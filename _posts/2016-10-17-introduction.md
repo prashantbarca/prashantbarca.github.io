@@ -14,37 +14,35 @@ Parser combinator libraries make it easier to write parsers, by specifying small
 
 We make use of the parser combinator library, [Hammer](https://github.com/UpstandingHackers/hammer). The hammer ruby library, which is available at [Hammer Ruby Library](https://rubygems.org/gems/hammer-parser) depends on `libhammer`.
 
-<font color="blue">In this tutorial series, we shall start off with the installation of hammer ruby bindings. We then go on to build a full fledged IoT client in ruby applying the LangSec philosophy.</font>
 
 ### Installing hammer ruby bindings
 
-- Installing libhammer
+- Installing libhammer. We first clone the hammer code from github, and then go in the folder.
 
 `$ git clone https://github.com/UpstandingHackers/hammer`
 
 `$ cd hammer`
 
+- We use scons to build it.
+
 `$ scons bindings=ruby`  
 
 `$ sudo scons bindings=ruby install`
 
-On linux you will also have to `sudo ldconfig`.
+- On linux you will also have to `sudo ldconfig`.
 
 This will install hammer to `/usr/local`.
 
-- Installing hammer ruby gem
-
-This is simple,
+- You can find the gem on rubygems at [Hammer Parser Rubygems](https://rubygems.org/gems/hammer-parser). You can install it by, 
 
 `gem install hammer-parser -v 0.2.0`
 
-You can find the gem on rubygems at [Hammer Parser Rubygems](https://rubygems.org/gems/hammer-parser).
-
-In order to make sure that the gem installed correctly, let us fire up our `irb`, and then try to include the `hammer-parser` gem. 
+- In order to make sure that the gem installed correctly, let us fire up our `irb`, and then try to include the `hammer-parser` gem. 
 
 `$ irb` 
 
 ```> require 'hammer-parser'
+
  => true ```
 
 Thanks for reading the first part of the LangSec Ruby tutorial series. In the next post, we shall look at building basic regular expressions using the hammer-parser library.
