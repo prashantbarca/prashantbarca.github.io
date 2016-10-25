@@ -1,5 +1,5 @@
 ---
-title: Chapter 0: Introduction to LangSec and Installing Hammer with Ruby bindings
+title: Chapter 0 - Introduction to LangSec and Installing Hammer with Ruby bindings
 
 author:
   name: Prashant Anantharaman

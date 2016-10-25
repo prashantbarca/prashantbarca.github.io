@@ -1,5 +1,5 @@
 ---
-title: Chapter 1: Building the basic parser combinators
+title: Chapter 1 - Building the basic parser combinators
 
 author:
   name: Prashant Anantharaman
