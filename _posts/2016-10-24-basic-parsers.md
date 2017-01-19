@@ -64,6 +64,12 @@ parser = @hammer.many(character)
 
 - `choice()`
 
+- `not()`
+
+- `int_range()`
+
+- `middle()`
+
 ### Recognizing the input with the help of the parsers
 
 We make use of the same parser as in the example of `many1()`.

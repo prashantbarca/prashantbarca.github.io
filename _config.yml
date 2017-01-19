@@ -37,7 +37,7 @@ lang: en
 show-subtitle: true
 display-social-icons: true
 
-footer-text: Proudly powered by <a href="http://jekyllrb.com">Jekyll</a> and hosted with &#9829; by <a href="https://www.github.com">Github</a><br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.
+footer-text: Proudly powered by Dartmouth College.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.
 
 # Preferrably 64px in height. Leave empty = disable.
 logo-image: # /img/logo.png
@@ -88,7 +88,7 @@ disqus-shortname:
 # has been considered, but this is way more customizable.
 twitter: https://twitter.com/prashantbarca
 youtube:
-instagram:
+instagram:http://instagram.com/prashantanantharaman
 tumblr:
 facebook: https://www.facebook.com/prashant.barca
 google-plus:
