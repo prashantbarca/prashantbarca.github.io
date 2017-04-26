@@ -16,25 +16,24 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 - This section is a mirror of the libFuzzer tutorial.
 
-``
-# Install git
-sudo apt-get --yes install git
-# Download the libfuzzer tutorial
-git clone https://github.com/google/fuzzer-test-suite.git FTS
-./FTS/tutorial/install-deps.sh  # Get deps
-./FTS/tutorial/install-clang.sh # Get fresh clang binaries
-# Get libFuzzer sources and build it
-svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer
-Fuzzer/build.sh
-``
+
+- Install git
+  sudo apt-get --yes install git
+- Download the libfuzzer tutorial
+  git clone https://github.com/google/fuzzer-test-suite.git FTS
+  ./FTS/tutorial/install-deps.sh  # Get deps
+  ./FTS/tutorial/install-clang.sh # Get fresh clang binaries
+- Get libFuzzer sources and build it
+  svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer
+  Fuzzer/build.sh
+
 
 - We now need to verify if the setup is right. We will make use of the test code given by the libFuzzer developers for this purpose.
 
-``clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a
+  clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a
+  ./a.out 2>&1 | grep ERROR
 
-./a.out 2>&1 | grep ERROR``
-
-- If you see a ``==ERROR: AddressSanitizer: heap-buffer-overflow on address...``, your installation is valid.
+- If you see a ```==ERROR: AddressSanitizer: heap-buffer-overflow on address...```, your installation is valid.
 
 ## A simple hammer method
 
@@ -42,24 +41,24 @@ The input expected by this method is the word "FUZZ". We write a Hammer parser t
 
 We first write the method to process the input.
 
-``
-void ProcessData(const uint8_t *Data, size_t DataSize)
-{       
-  bool flag = DataSize == 4 &&
-    Data[0] == 'F' &&
-    Data[1] == 'U' &&
-    Data[2] == 'Z' &&
-    Data[3] == 'Z';  // :‑<
-  printf("%d\n", flag);
-}
-``
+```c
+   void ProcessData(const uint8_t *Data, size_t DataSize)
+   {       
+   	   bool flag = DataSize == 4 &&
+    	   Data[0] == 'F' &&
+    	   Data[1] == 'U' &&
+    	   Data[2] == 'Z' &&
+    	   Data[3] == 'Z';  // :‑<
+  	   printf("%d\n", flag);
+   }
+```
 
 We now need to write a parser for this input.
 
-``
-void ValidateInput(const uint8_t *Data,
-            size_t DataSize) {
-    HParser *parser = h_sequence(h_ch('F'),
+```c
+   void ValidateInput(const uint8_t *Data,
+   	         size_t DataSize) {
+    		 HParser *parser = h_sequence(h_ch('F'),
                 h_ch('U'),
                 h_ch('Z'),
                 h_ch('Z'),
@@ -71,13 +70,13 @@ void ValidateInput(const uint8_t *Data,
       ProcessData(Data, DataSize);
     }
 }
-``
+```
 
 The above code would parse the message "FUZZ".
 
-``
+```c
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
   ValidateInput(Data, Size);
   return 0;
 }
-``
+```
