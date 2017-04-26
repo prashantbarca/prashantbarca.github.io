@@ -12,6 +12,8 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 [libFuzzer](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md) is a coverage guided fuzzing engine. In this tutorial we will see how to use libFuzzer with the Hammer parser-combinator toolkit.
 
+Make sure you have hammer installed. You can install it using our [Hammer Installer](https://github.com/prashantbarca/hammer-installer).
+
 ## Setting up the environment
 
 - This section is a mirror of the libFuzzer tutorial. You will find the instructions at [https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md).
@@ -22,10 +24,11 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
   ```
 - Download the libfuzzer tutorial
   ```shell
-  git clone https://github.com/google/fuzzer-test-suite.git FTS```
+  git clone https://github.com/google/fuzzer-test-suite.git FTS
+  ```
   ```shell
    ./FTS/tutorial/install-deps.sh  # Get deps
-   ```
+  ```
   ```shell
   ./FTS/tutorial/install-clang.sh # Get fresh clang binaries
   ```
