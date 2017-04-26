@@ -8,8 +8,6 @@ author:
 summary: We further dive into parser combinators, and go on build some basic parser combinators.
 ---
 
-`This is a work in progress, please check again in a couple of days.`
-
 In this post, we shall build some basic parsers to understand the functioning of parser combinators.
 
 If you haven't installed the [hammer-parser ruby gem](https://rubygems.org/gems/hammer-parser), please go back to the previous post and install it first. 
@@ -52,24 +50,47 @@ parser = @hammer.many(character)
 
 - `many1()` - Same as `many()` but includes 1 or more occurences instead of 0 or more.
 
-- `end_p()`
+- `end_p()` - To denote the end of the parser.
+
+```ruby
+```
 
 - `sequence()`
 
+```ruby
+```
+
 - `token()`
 
+```ruby
+```
 - `optional()`
 
+```ruby
+```
+
 - `middle()`
+
+```ruby
+```
 
 - `choice()`
 
+```ruby
+```
+
 - `not()`
 
+```ruby
+```
 - `int_range()`
 
-- `middle()`
+```ruby
+```
 
+- `middle()`
+```ruby
+```
 ### Recognizing the input with the help of the parsers
 
 We make use of the same parser as in the example of `many1()`.

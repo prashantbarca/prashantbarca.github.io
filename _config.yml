@@ -8,7 +8,7 @@ description:
   meta: Language-theoretic security blog
 
   # Description of your site, this will show up on the front page.
-  subtitle: LangSec is the approach to internet security where all input is treated as a language, and is recognized completely before being processed. This is a  <a href="http://langsec.org">LangSec</a> tutorial series in which we begin with the installation and basics of parser combinators and go on to build an effective IoT client in ruby applying the LangSec philosophy throughout. The prerequisites for this tutorial are -- a basic knowledge of ruby and a basic knowledge of the Chomsky hierarchy.
+  subtitle: LangSec is the approach to internet security where all input is treated as a language, and is recognized completely before being processed. This is a  <a href="http://langsec.org">LangSec</a> tutorial series in which we begin with the installation and basics of parser combinators and go on to build an effective IoT client in ruby applying the LangSec philosophy throughout. The prerequisites for this tutorial are -- a basic knowledge of ruby and a basic knowledge of the Chomsky hierarchy. THIS IS A WORK IN PROGRESS.
 
 author:
   name: Prashant Anantharaman
