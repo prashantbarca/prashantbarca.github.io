@@ -16,30 +16,31 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 - This section is a mirror of the libFuzzer tutorial.
 
-
 - Install git
-  sudo apt-get --yes install git
+  ```sh sudo apt-get --yes install git```
 - Download the libfuzzer tutorial
-  git clone https://github.com/google/fuzzer-test-suite.git FTS
-  ./FTS/tutorial/install-deps.sh  # Get deps
-  ./FTS/tutorial/install-clang.sh # Get fresh clang binaries
+  ```sh git clone https://github.com/google/fuzzer-test-suite.git FTS```
+  ```sh ./FTS/tutorial/install-deps.sh  # Get deps```
+  ```sh ./FTS/tutorial/install-clang.sh # Get fresh clang binaries```
 - Get libFuzzer sources and build it
-  svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer
-  Fuzzer/build.sh
+  ```sh svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer```
+  ```sh Fuzzer/build.sh```
 
 
 - We now need to verify if the setup is right. We will make use of the test code given by the libFuzzer developers for this purpose.
 
-  clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a
-  ./a.out 2>&1 | grep ERROR
+  ```sh clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a```
+  ```sh ./a.out 2>&1 | grep ERROR```
 
-- If you see a ```==ERROR: AddressSanitizer: heap-buffer-overflow on address...```, your installation is valid.
+- If you see a ```sh ==ERROR: AddressSanitizer: heap-buffer-overflow on address.```, your installation is valid.
 
 ## A simple hammer method
 
 The input expected by this method is the word "FUZZ". We write a Hammer parser to validate the input. As per the requirements of libFuzzer, the method should take arguments of type (const uint8_t *Data, size_t DataSize). We can validate the size of the data expected (DataSize), as well as parse the *Data for compliance with the grammar in discussion.
 
 We first write the method to process the input.
+
+- Create a C file; and add the headers you need.
 
 ```c
    void ProcessData(const uint8_t *Data, size_t DataSize)
@@ -80,3 +81,12 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
   return 0;
 }
 ```
+
+# Compiling and Running
+
+- Compiling a file called "test.cc"
+```sh clang++ -o test -lhammer -g -fsanitize=address -fsanitize-coverage=trace-pc-guard test.cc libFuzzer.a```
+
+- Running: Simply execute the executable generated. It would run the fuzzer and provide potential pitfalls.
+```sh ./test```
+
