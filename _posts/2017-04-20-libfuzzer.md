@@ -14,7 +14,7 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 ## Setting up the environment
 
-- This section is a mirror of the libFuzzer tutorial.
+- This section is a mirror of the libFuzzer tutorial. You will find the instructions at [https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md).
 
 - Install git
   ```shell
@@ -41,7 +41,7 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 - We now need to verify if the setup is right. We will make use of the test code given by the libFuzzer developers for this purpose.
 
-  ```shell
+   ```shell
    clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a
    ```
    ```shell
@@ -56,40 +56,42 @@ The input expected by this method is the word "FUZZ". We write a Hammer parser t
 
 We first write the method to process the input.
 
-- Create a C file; and add the headers you need.
+- Create a C file "test.cc"; and add the headers you need.
+
+We add a method to process the data.
 
 ```c
-   void ProcessData(const uint8_t *Data, size_t DataSize)
-   {       
+void ProcessData(const uint8_t *Data, size_t DataSize)
+ {       
    	   bool flag = DataSize == 4 &&
     	   Data[0] == 'F' &&
     	   Data[1] == 'U' &&
     	   Data[2] == 'Z' &&
     	   Data[3] == 'Z';  // :‑<
   	   printf("%d\n", flag);
-   }
+ }
 ```
 
-We now need to write a parser for this input.
+We now need to write a parser for this input. We first define an (HParser *) and set a parser combinator to it. We then need to parse "Data". The h_parse() method returns an HParseResult pointer, and we need to check if this pointer is null. A null return value means that the parsing was unsuccessful.
 
 ```c
-   void ValidateInput(const uint8_t *Data,
-   	         size_t DataSize) {
-    		 HParser *parser = h_sequence(h_ch('F'),
-                h_ch('U'),
-                h_ch('Z'),
-                h_ch('Z'),
-                h_end_p(), NULL);
+void ValidateInput(const uint8_t *Data, size_t DataSize) 
+  {
+    HParser *parser = h_sequence(h_ch('F'),
+    	    h_ch('U'),
+            h_ch('Z'),
+            h_ch('Z'),
+            h_end_p(), NULL); # parse the word FUZZ
     const HParseResult *result;
-    result = h_parse(parser, Data, 4);
+    result = h_parse(parser, Data, 4); # result is nil if parse unsuccessful
     if(result)
     {
       ProcessData(Data, DataSize);
     }
-}
+  }
 ```
 
-The above code would parse the message "FUZZ".
+We now use the code below set the target method for the LLVMFuzzer to target. We set the target as the ValidateInput() method we just defined.
 
 ```c
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
