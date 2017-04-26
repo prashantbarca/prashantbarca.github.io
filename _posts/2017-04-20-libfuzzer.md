@@ -29,7 +29,7 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 - We now need to verify if the setup is right. We will make use of the test code given by the libFuzzer developers for this purpose.
 
-  ```sh clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a```
+  ```bash clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a```
   ```sh ./a.out 2>&1 | grep ERROR```
 
 - If you see a ```sh ==ERROR: AddressSanitizer: heap-buffer-overflow on address.```, your installation is valid.
