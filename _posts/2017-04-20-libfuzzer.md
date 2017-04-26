@@ -106,8 +106,12 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
 # Compiling and Running
 
 - Compiling a file called "test.cc"
-```sh clang++ -o test -lhammer -g -fsanitize=address -fsanitize-coverage=trace-pc-guard test.cc libFuzzer.a```
+```shell 
+clang++ -o test -lhammer -g -fsanitize=address -fsanitize-coverage=trace-pc-guard test.cc libFuzzer.a
+```
 
 - Running: Simply execute the executable generated. It would run the fuzzer and provide potential pitfalls.
-```sh ./test```
+```shell
+ ./test
+```
 
