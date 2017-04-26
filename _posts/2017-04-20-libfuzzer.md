@@ -17,22 +17,38 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 - This section is a mirror of the libFuzzer tutorial.
 
 - Install git
-  ```sh sudo apt-get --yes install git```
+  ```shell
+  sudo apt-get --yes install git
+  ```
 - Download the libfuzzer tutorial
-  ```sh git clone https://github.com/google/fuzzer-test-suite.git FTS```
-  ```sh ./FTS/tutorial/install-deps.sh  # Get deps```
-  ```sh ./FTS/tutorial/install-clang.sh # Get fresh clang binaries```
+  ```shell
+  git clone https://github.com/google/fuzzer-test-suite.git FTS```
+  ```shell
+   ./FTS/tutorial/install-deps.sh  # Get deps
+   ```
+  ```shell
+  ./FTS/tutorial/install-clang.sh # Get fresh clang binaries
+  ```
 - Get libFuzzer sources and build it
-  ```sh svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer```
-  ```sh Fuzzer/build.sh```
+  ```shell 
+  svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer
+  ```
+  ```shell
+  Fuzzer/build.sh
+  ```
 
+## Test the installation
 
 - We now need to verify if the setup is right. We will make use of the test code given by the libFuzzer developers for this purpose.
 
-  ```bash clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a```
-  ```sh ./a.out 2>&1 | grep ERROR```
+  ```shell
+   clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a
+   ```
+   ```shell
+   ./a.out 2>&1 | grep ERROR
+   ```
 
-- If you see a ```sh ==ERROR: AddressSanitizer: heap-buffer-overflow on address.```, your installation is valid.
+- If you see a "==ERROR: AddressSanitizer: heap-buffer-overflow on address.", your installation is valid.
 
 ## A simple hammer method
 
