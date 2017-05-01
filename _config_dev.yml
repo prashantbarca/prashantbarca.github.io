@@ -5,7 +5,7 @@ name: LangSec
 description:
 
   # Description of your site, this will show up in google.
-  meta: Blog of CEG GNU/Linux Users' Group.
+  meta: 
 
   # Description of your site, this will show up on the front page.
   subtitle: <a href="http://ceglug.org">CEGLUG</a> is the GNU/Linux Users' Community of <a href="https://en.wikipedia.org/wiki/College_of_Engineering,_Guindy">CEG</a>.
@@ -80,7 +80,7 @@ paginate: 3
 display-next-prev-post: true
 
 # Leave empty if you don't want comments on post pages.
-disqus-shortname: ceglugblog
+disqus-shortname:
 
 
 ################

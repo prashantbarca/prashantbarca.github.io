@@ -10,72 +10,46 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 ## Introduction
 
-[libFuzzer](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md) is a coverage guided fuzzing engine. In this tutorial we will see how to use libFuzzer with the Hammer parser-combinator toolkit.
+The goal of this tutorial is to provide a primer to fuzz-test parsers written in hammer. In order to go about this, we will look at 2 simple C files; one simply meant to test libfuzzer, and another with a hammer parser.
 
-Make sure you have hammer installed. You can install it using our [Hammer Installer](https://github.com/prashantbarca/hammer-installer).
+The LangSec philosophy is to completely recognize all input to conform to a formal language before performing any processing of the input. In order to achieve this, for an input, we define a parser to make sure the input conforms to the language.
+
+<img src="/pattern.png" style="width:20%;"/>
+
+[libFuzzer](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md) is a coverage guided fuzzing engine. In this tutorial we will see how to use libFuzzer with the Hammer parser-combinator toolkit.
 
 ## Setting up the environment
 
-- This section is a mirror of the libFuzzer tutorial. You will find the instructions at [https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md).
+- Make sure you have hammer installed. You can install it using our [Hammer Installer](https://github.com/prashantbarca/hammer-installer).
 
-- Install git
-  ```shell
-  sudo apt-get --yes install git
-  ```
-- Download the libfuzzer tutorial
-  ```shell
-  git clone https://github.com/google/fuzzer-test-suite.git FTS
-  ```
-  ```shell
-   ./FTS/tutorial/install-deps.sh  # Get deps
-  ```
-  ```shell
-  ./FTS/tutorial/install-clang.sh # Get fresh clang binaries
-  ```
-- Get libFuzzer sources and build it
-  ```shell 
-  svn co http://llvm.org/svn/llvm-project/llvm/trunk/lib/Fuzzer
-  ```
-  ```shell
-  Fuzzer/build.sh
-  ```
+- Follow the instructions to set up and test the environment for libfuzzer at [https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md).
 
-## Test the installation
+## Why Hammer
 
-- We now need to verify if the setup is right. We will make use of the test code given by the libFuzzer developers for this purpose.
+Download our sample C programs -- [fuzz_me.c](/fuzz_me.c) and [fuzz_me_with_hammer.c](/fuzz_me_with_hammer.c).
 
-   ```shell
-   clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard FTS/tutorial/fuzz_me.cc libFuzzer.a
-   ```
-   ```shell
-   ./a.out 2>&1 | grep ERROR
-   ```
+In the _fuzz_me.c_ file, you should see a method looking like the one below. As you may have noticed, there is a buffer overflow here and this is caught when we compile and run it.
 
-- If you see a "==ERROR: AddressSanitizer: heap-buffer-overflow on address.", your installation is valid.
-
-## A simple hammer method
-
-The input expected by this method is the word "FUZZ". We write a Hammer parser to validate the input. As per the requirements of libFuzzer, the method should take arguments of type (const uint8_t *Data, size_t DataSize). We can validate the size of the data expected (DataSize), as well as parse the *Data for compliance with the grammar in discussion.
-
-We first write the method to process the input.
-
-- Create a C file "test.cc"; and add the headers you need.
-
-We add a method to process the data.
 
 ```c
 void ProcessData(const uint8_t *Data, size_t DataSize)
  {       
-   	   bool flag = DataSize == 4 &&
-    	   Data[0] == 'F' &&
-    	   Data[1] == 'U' &&
-    	   Data[2] == 'Z' &&
-    	   Data[3] == 'Z';  // :‑<
-  	   printf("%d\n", flag);
+      return DataSize >= 3 &&
+      Data[0] == 'F' &&
+      Data[1] == 'U' &&
+      Data[2] == 'Z' &&
+      Data[3] == 'Z';
  }
 ```
 
-We now need to write a parser for this input. We first define an (HParser *) and set a parser combinator to it. We then need to parse "Data". The h_parse() method returns an HParseResult pointer, and we need to check if this pointer is null. A null return value means that the parsing was unsuccessful.
+We run the following commands to compile and run _fuzz_me.c_.
+
+```shell
+clang -g -lhammer -fsanitize=address -fsanitize-coverage=trace-pc-guard fuzz_me.c libFuzzer.a
+./a.out
+```
+
+Let us now look at the _fuzz_test_with_hammer.c_. In this file, we want to make sure that we recognize the input fully before performing any processing. In order to do this, we write a simple hammer parser to recognize the input that is expected by this particular program.
 
 ```c
 void ValidateInput(const uint8_t *Data, size_t DataSize) 
@@ -84,9 +58,9 @@ void ValidateInput(const uint8_t *Data, size_t DataSize)
     	    h_ch('U'),
             h_ch('Z'),
             h_ch('Z'),
-            h_end_p(), NULL); # parse the word FUZZ
+            h_end_p(), NULL);
     const HParseResult *result;
-    result = h_parse(parser, Data, 4); # result is nil if parse unsuccessful
+    result = h_parse(parser, Data, 4); 
     if(result)
     {
       ProcessData(Data, DataSize);
@@ -94,24 +68,8 @@ void ValidateInput(const uint8_t *Data, size_t DataSize)
   }
 ```
 
-We now use the code below set the target method for the LLVMFuzzer to target. We set the target as the ValidateInput() method we just defined.
+In the above method, the h_parse() method returns a _null_ if parsing was unsuccessful.
 
-```c
-extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
-  ValidateInput(Data, Size);
-  return 0;
-}
-```
+## Related Links
 
-# Compiling and Running
-
-- Compiling a file called "test.cc"
-```shell 
-clang++ -o test -lhammer -g -fsanitize=address -fsanitize-coverage=trace-pc-guard test.cc libFuzzer.a
-```
-
-- Running: Simply execute the executable generated. It would run the fuzzer and provide potential pitfalls.
-```shell
- ./test
-```
-
+- [http://langsec.org/](http://langsec.org/).

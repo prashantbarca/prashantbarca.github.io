@@ -146,3 +146,4 @@ defaults:
       layout: "post"
       excerpt_separator: "<!--more-->"
 exclude: ["vendor"]
+gems: [jekyll-paginate]
