@@ -73,3 +73,4 @@ In the above method, the h_parse() method returns a _null_ if parsing was unsucc
 ## Related Links
 
 - [http://langsec.org/](http://langsec.org/).
+- [Hammer Primer](https://github.com/sergeybratus/HammerPrimer).
