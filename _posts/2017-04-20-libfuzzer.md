@@ -10,7 +10,7 @@ summary: We will be testing hammer parsers written in C with libfuzzer to expose
 
 ## Introduction
 
-The goal of this tutorial is to provide a primer to fuzz-test parsers written in hammer. In order to go about this, we will look at 2 simple C files; one simply meant to test libfuzzer, and another with a hammer parser.
+The goal of this tutorial is to provide a primer to fuzz-test parsers written in hammer. In order to go about this, we will look at 2 simple cpp files; one simply meant to test libfuzzer, and another with a hammer parser.
 
 The LangSec philosophy is to completely recognize all input to conform to a formal language before performing any processing of the input. In order to achieve this, for an input, we define a parser to make sure the input conforms to the language.
 
@@ -26,10 +26,9 @@ The LangSec philosophy is to completely recognize all input to conform to a form
 
 ## Why Hammer
 
-Download our sample C programs -- [fuzz_me.c](/fuzz_me.c) and [fuzz_me_with_hammer.c](/fuzz_me_with_hammer.c).
+Download our sample CPP programs -- [fuzz_me.cc](/fuzz_me.cc) and [fuzz_me_with_hammer.cc](/fuzz_me_with_hammer.cc).
 
-In the _fuzz_me.c_ file, you should see a method looking like the one below. As you may have noticed, there is a buffer overflow here and this is caught when we compile and run it.
-
+In the _fuzz_me.cc_ file, you should see the method below. As you may have noticed, there is a buffer overflow here and this is caught when we compile and run it.
 
 ```c
 void ProcessData(const uint8_t *Data, size_t DataSize)
@@ -42,14 +41,14 @@ void ProcessData(const uint8_t *Data, size_t DataSize)
  }
 ```
 
-We run the following commands to compile and run _fuzz_me.c_.
+We run the following commands to compile and run _fuzz_me.cc_.
 
 ```shell
-clang -g -lhammer -fsanitize=address -fsanitize-coverage=trace-pc-guard fuzz_me.c libFuzzer.a
-./a.out
+clang++ -g -lhammer -fsanitize=address -fsanitize-coverage=trace-pc-guard fuzz_me.cc libFuzzer.a
+./a.out -detect_leaks=0
 ```
 
-Let us now look at the _fuzz_test_with_hammer.c_. In this file, we want to make sure that we recognize the input fully before performing any processing. In order to do this, we write a simple hammer parser to recognize the input that is expected by this particular program.
+Let us now look at the _fuzz_test_with_hammer.cc_. In this file, we want to make sure that we recognize the input fully before performing any processing. In order to do this, we write a simple hammer parser to recognize the input that is expected by this particular program.
 
 ```c
 void ValidateInput(const uint8_t *Data, size_t DataSize) 
@@ -69,6 +68,8 @@ void ValidateInput(const uint8_t *Data, size_t DataSize)
 ```
 
 In the above method, the h_parse() method returns a _null_ if parsing was unsuccessful.
+
+When we run the cpp file _fuzz_me_with_hammer.cc_, we see that nothing interesting happers here when we included a hammer parser to recognize the input strictly before any processing.
 
 ## Related Links
 
