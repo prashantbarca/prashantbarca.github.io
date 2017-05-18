@@ -14,7 +14,7 @@ The goal of this tutorial is to provide a primer to fuzz-test parsers written in
 
 The LangSec philosophy is to completely recognize all input to conform to a formal language before performing any processing of the input. In order to achieve this, for an input, we define a parser to make sure the input conforms to the language.
 
-<img src="/pattern.png" style="width:20%;"/>
+<img src="/pattern.png" style="width:30%;"/>
 
 [libFuzzer](https://github.com/google/fuzzer-test-suite/blob/master/tutorial/libFuzzerTutorial.md) is a coverage guided fuzzing engine. In this tutorial we will see how to use libFuzzer with the Hammer parser-combinator toolkit.
 
@@ -44,8 +44,8 @@ void ProcessData(const uint8_t *Data, size_t DataSize)
 We run the following commands to compile and run _fuzz_me.cc_.
 
 ```shell
-clang++ -g -lhammer -fsanitize=address -fsanitize-coverage=trace-pc-guard fuzz_me.cc libFuzzer.a
-./a.out -detect_leaks=0
+clang++ -g -fsanitize=address -fsanitize-coverage=trace-pc-guard fuzz_me.cc libFuzzer.a
+./a.out
 ```
 
 Let us now look at the _fuzz_test_with_hammer.cc_. In this file, we want to make sure that we recognize the input fully before performing any processing. In order to do this, we write a simple hammer parser to recognize the input that is expected by this particular program.
@@ -68,6 +68,12 @@ void ValidateInput(const uint8_t *Data, size_t DataSize)
 ```
 
 In the above method, the h_parse() method returns a _null_ if parsing was unsuccessful.
+
+
+```shell
+clang++ -g -lhammer -fsanitize=address -fsanitize-coverage=trace-pc-guard fuzz_me_with_hammer.cc libFuzzer.a
+./a.out -detect_leaks=0
+```
 
 When we run the cpp file _fuzz_me_with_hammer.cc_, we see that nothing interesting happers here when we included a hammer parser to recognize the input strictly before any processing.
 
