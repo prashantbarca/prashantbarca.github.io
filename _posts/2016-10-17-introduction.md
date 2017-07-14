@@ -14,6 +14,13 @@ Parser combinator libraries make it easier to write parsers, by specifying small
 
 We make use of the parser combinator library, [Hammer](https://github.com/UpstandingHackers/hammer). The hammer ruby library, which is available at [Hammer Ruby Library](https://rubygems.org/gems/hammer-parser) depends on `libhammer`.
 
+### Quickstart
+
+You could make use of the Docker image available for you - [https://hub.docker.com/r/prashantbarca/hammer-parser/](https://hub.docker.com/r/prashantbarca/hammer-parser/).
+
+- Sudo may not be needed on Mac OSX. The image comes with hammer and libfuzzer pre-installed, and is easy to use.
+
+`sudo docker run -ti prashantbarca/hammer-parser:pre`
 
 ### Installing hammer ruby bindings
 

@@ -3,7 +3,8 @@ title: Chapter 2 - Testing the parser with libfuzzer
 
 author:
   name: Prashant Anantharaman
-  info: (@<a href="https://www.facebook.com/prashant.barca">Prashant Anantharaman</a>)
+  info: (@<a href="https://www.facebook.com/prashant.barca">Prashant Anantharaman</a>
+  published:false
   
 summary: We will be testing hammer parsers written in C with libfuzzer to expose common C stack overflows, buffer overflows, memory leaks, etc.
 ---
